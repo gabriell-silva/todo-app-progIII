@@ -3,10 +3,10 @@ const app = express();
 
 app.use(express.json());
 
-const tasks_routes = require('./routes/task_routes');
+const tasks_routes = require('./routes/tasks.routes');
 app.use('/tasks', tasks_routes);
 
-const users_routes = require('./routes/users_routes');
+const users_routes = require('./routes/users.routes');
 app.use('/users', users_routes);
 
 app.get('*', (req, res) => {
