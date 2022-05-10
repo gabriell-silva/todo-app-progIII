@@ -1,5 +1,12 @@
 const express = require('express');
-const { list, create, find, remove, edit, complete } = require('../controllers/TaskContoller');
+const {
+  list,
+  create,
+  find,
+  remove,
+  edit,
+  complete
+} = require('../controllers/TaskContoller');
 const { getTask, isValidBody } = require('../middleware/tasks.middleware');
 const { auth } = require('../middleware/users.middleware');
 

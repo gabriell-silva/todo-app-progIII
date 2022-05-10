@@ -1,8 +1,9 @@
 const Task = require("../models/Task");
 
 const list = async (request, response) => {
-  const tasks = await Task.find({ owner: request.user._id });
-  response.send(tasks);
+  const { user } = request;
+  await user.populate('tasks');
+  response.send([user.tasks]);
 }
 
 const find = async (request, response) => {
@@ -27,8 +28,9 @@ const create = async (request, response) => {
 
 const remove = async (request, response) => {
   try {
-    const { id } = request.params;
-    await Task.findByIdAndDelete(id);
+    const { task } = request;
+    await Task.findByIdAndDelete(task._id);
+    request.task = null;
     response.send();
   } catch (error) {
     response.status(500).send({ error: error.message });

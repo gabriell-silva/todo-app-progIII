@@ -1,5 +1,14 @@
 const express = require('express');
-const { list, find, create, remove, edit, login, logout, logoutAll } = require('../controllers/UserController');
+const {
+  list,
+  find,
+  create,
+  remove,
+  edit,
+  login,
+  logout,
+  logoutAll,
+} = require('../controllers/UserController');
 const { isValidUserBody, auth } = require('../middleware/users.middleware');
 
 const users_routes = express.Router();
