@@ -1,7 +1,7 @@
 const Task = require("../models/Task");
 
 const list = async (request, response) => {
-  const tasks = await Task.find();
+  const tasks = await Task.find({ owner: request.user._id });
   response.send(tasks);
 }
 
@@ -13,7 +13,11 @@ const find = async (request, response) => {
 const create = async (request, response) => {
   try {
     const { description, completed } = request.body;
-    const task = new Task({ description, completed });
+    const task = new Task({
+      description,
+      completed,
+      owner: request.user._id,
+    });
     await task.save();
     response.status(201).send(task);
   } catch (error) {

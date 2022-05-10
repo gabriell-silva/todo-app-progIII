@@ -4,6 +4,9 @@ const bcrypt = require('bcrypt');
 require('./db/mongoose');
 
 const app = require('./app');
+const { findOne } = require('./models/Task');
+const Task = require('./models/Task');
+const User = require('./models/User');
 
 const port = process.env['PORT'] || 8000;
 
@@ -11,17 +14,14 @@ app.listen(port, () => {
   console.log(`Server running and listen on port ${port}...`);
 });
 
-// const jwt = require('jsonwebtoken');
+const main = async () => {
+  // const task = await Task.findById('627994a0a1c670818f569084');
+  // await task.populate('owner');
+  // console.log(task.toJSON());
 
-// function myAuthFunction() {
-//   const secret = process.env['JWT_SECRET'] || 'unijuazeiro';
-//   const token = jwt.sign({ _id: '123abc', name: 'Fulado de tal' }, secret, { expiresIn: '7 days' });
-//   console.log(token);
+  const user = await User.findOne({ email: 'samuelclerod@gmail.com' });
+  await user.populate('tasks');
+  console.log(user.tasks);
+}
 
-//   const data = jwt.verify(token, secret);
-//   console.log(data);
-// }
-
-
-
-// myAuthFunction()
+main();

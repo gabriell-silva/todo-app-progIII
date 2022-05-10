@@ -1,3 +1,4 @@
+const { request } = require('../app');
 const Task = require('../models/Task');
 
 const isValidBody = (req, res, next) => {
@@ -18,7 +19,7 @@ const isValidBody = (req, res, next) => {
 
 const getTask = async (req, res, next) => {
   const { id } = req.params;
-  const task = await Task.findById(id);
+  const task = await Task.findOne({ _id: id, owner: request.user._id });
   if (!task) {
     return res.status(404).send({ error: 'Task not found' });
   };
