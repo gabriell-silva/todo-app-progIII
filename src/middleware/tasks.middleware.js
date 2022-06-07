@@ -1,4 +1,3 @@
-const { request } = require('../app');
 const Task = require('../models/Task');
 
 const isValidBody = (req, res, next) => {

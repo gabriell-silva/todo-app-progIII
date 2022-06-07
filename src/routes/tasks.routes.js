@@ -6,7 +6,7 @@ const {
   remove,
   edit,
   complete
-} = require('../controllers/TaskContoller');
+} = require('../controllers/TaskController');
 const { getTask, isValidBody } = require('../middleware/tasks.middleware');
 const { auth } = require('../middleware/users.middleware');
 

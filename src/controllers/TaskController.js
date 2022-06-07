@@ -3,7 +3,7 @@ const Task = require("../models/Task");
 const list = async (request, response) => {
   const { user } = request;
   await user.populate('tasks');
-  response.send([user.tasks]);
+  response.send(user.tasks);
 }
 
 const find = async (request, response) => {
